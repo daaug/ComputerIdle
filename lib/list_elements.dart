@@ -34,7 +34,7 @@ class _MyElementState extends State<MyElement> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => widget.runTimer(widget.fullTime, widget.id),
+      onTap: () => widget.runTimer(widget.id),
       child: Container(
         alignment: Alignment.center,
         decoration: BoxDecoration(

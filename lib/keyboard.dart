@@ -65,10 +65,15 @@ class _MyTyperState extends State<MyTyper> {
 
   int baseLevelXp = 30;
   late Timer timer;
+  int currWorkingId = 1000;
 
-  runTimer(int sec, int id){
+  runTimer(int id){
+    if (timer.isActive) {
+      timer.cancel();
+    }
+
     timer = Timer.periodic(
-      Duration(milliseconds: sec),
+      Duration(milliseconds: kbdData[id][kbdCols['time']]),
       (t){
         if(kbdData[id][kbdCols['xp']] + 1 >= ((kbdData[id][kbdCols['level']]/10)+1) * baseLevelXp){
           kbdData[id][kbdCols['level']] += 1;
@@ -84,7 +89,16 @@ class _MyTyperState extends State<MyTyper> {
         print('NAME: ${kbdData[id][0]}\tQty: ${kbdData[id][4]}\tXP: ${kbdData[id][3]}\tLEVEL: ${kbdData[id][2]} ');
       }
     );
-  }
+
+  } // runTimer()
+
+  @override
+  void initState() {
+    super.initState();
+
+    timer = Timer(const Duration(milliseconds: 1), () {});
+
+  } // initState()
 
   @override
   Widget build(BuildContext context) {
@@ -110,4 +124,5 @@ class _MyTyperState extends State<MyTyper> {
       ],
     );
   }
+
 }
