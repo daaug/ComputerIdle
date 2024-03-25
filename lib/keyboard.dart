@@ -68,27 +68,29 @@ class _MyTyperState extends State<MyTyper> {
   int currWorkingId = 1000;
 
   runTimer(int id){
-    if (timer.isActive) {
+    if (timer.isActive && id == currWorkingId) {
       timer.cancel();
-    }
-
-    timer = Timer.periodic(
-      Duration(milliseconds: kbdData[id][kbdCols['time']]),
-      (t){
-        if(kbdData[id][kbdCols['xp']] + 1 >= ((kbdData[id][kbdCols['level']]/10)+1) * baseLevelXp){
-          kbdData[id][kbdCols['level']] += 1;
-          kbdData[id][kbdCols['xp']] = 0;
-          kbdData[id][kbdCols['qty']] += 1;
-        } else {
-          kbdData[id][kbdCols['xp']] += 1;
-          kbdData[id][kbdCols['qty']] += 1;
+    } else {
+      currWorkingId = id;
+      timer.cancel();
+      timer = Timer.periodic(
+        Duration(milliseconds: kbdData[id][kbdCols['time']]),
+        (t){
+          if(kbdData[id][kbdCols['xp']] + 1 >= ((kbdData[id][kbdCols['level']]/10)+1) * baseLevelXp){
+            kbdData[id][kbdCols['level']] += 1;
+            kbdData[id][kbdCols['xp']] = 0;
+            kbdData[id][kbdCols['qty']] += 1;
+          } else {
+            kbdData[id][kbdCols['xp']] += 1;
+            kbdData[id][kbdCols['qty']] += 1;
+          }
+          setState(() {
+            kbdData[id];
+          });
+          print('NAME: ${kbdData[id][0]}\tQty: ${kbdData[id][4]}\tXP: ${kbdData[id][3]}\tLEVEL: ${kbdData[id][2]} ');
         }
-        setState(() {
-          kbdData[id];
-        });
-        print('NAME: ${kbdData[id][0]}\tQty: ${kbdData[id][4]}\tXP: ${kbdData[id][3]}\tLEVEL: ${kbdData[id][2]} ');
-      }
-    );
+      );
+    }
 
   } // runTimer()
 
@@ -102,9 +104,10 @@ class _MyTyperState extends State<MyTyper> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      scrollDirection: Axis.vertical,
-      padding: const EdgeInsets.only(top: 10, bottom: 10),
+    return Wrap(
+      direction: Axis.horizontal,
+      spacing: 10,
+      alignment: WrapAlignment.center,
       children: [
         for(var i = 0; i < kbdData.length; i++)
           Padding(

@@ -33,10 +33,11 @@ class _MyElementState extends State<MyElement> {
   
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () => widget.runTimer(widget.id),
-      child: Container(
+    return  Container(
         alignment: Alignment.center,
+        constraints: BoxConstraints(
+          maxWidth: MediaQuery.of(context).size.width * 0.4,
+        ),
         decoration: BoxDecoration(
           border: Border.all(
             width: 1,
@@ -44,50 +45,37 @@ class _MyElementState extends State<MyElement> {
           ),
           borderRadius: BorderRadius.circular(5),
         ),
-        child: Flex(
-          direction: Axis.horizontal,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Expanded( // Skill Name
-              flex: 3,
-              child: Text(widget.name,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontSize: 30,
+        child:InkWell(
+          onTap: () => widget.runTimer(widget.id),
+          child: Flex(
+            direction: Axis.horizontal,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Expanded( // Skill Name
+                flex: 3,
+                child: Text(widget.name,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 30,
+                  ),
                 ),
               ),
-            ),
-            Expanded(
-              flex: 7,
-              child: Column(
-                children: [
-                  Row( // First Row
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('qty: ${widget.qty}'),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 10),
-                        child: widget.cost != 0 ? Text('cost: ${widget.cost}') : const Text(''),
-                      )
-                    ],
-                  ),
-                  Row( // Second Row
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('level: ${widget.level}'),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 10),
-                        child: Text('xp: ${widget.xp}/${(((kbdData[widget.id][kbdCols['level']]/10)+1) * 30).toInt()}'),
-                      ),
-                    ],
-                  ),
-                  Text('time: ${widget.fullTime}ms'),
-                ],
-              ),
-            )
-          ],
-        ), // END Row
-      )
+              Expanded(
+                flex: 7,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('qty: ${widget.qty}'),
+                    widget.cost != 0 ? Text('cost: ${widget.cost}') : const Text(''),
+                    Text('level: ${widget.level}'),
+                    Text('xp: ${widget.xp}/${(((kbdData[widget.id][kbdCols['level']]/10)+1) * 30).toInt()}'),
+                    Text('time: ${widget.fullTime}ms'),
+                  ],
+                ),
+              )
+            ],
+          ), // END Row
+        ), // END InkWell
     ); // END Container
   }
 }
