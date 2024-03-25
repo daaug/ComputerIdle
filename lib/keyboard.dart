@@ -41,8 +41,8 @@ class _KeyboardPageState extends State<KeyboardPage> {
             width: MediaQuery.of(context).size.width * 0.9,
             child: TabBarView(
               children: [
-                MyTyper(),
-                Text('no letters'),
+                MyTyper(erase: false),
+                MyTyper(erase: true),
                 Text('words'),
                 Text('no words'),
               ],
@@ -55,7 +55,11 @@ class _KeyboardPageState extends State<KeyboardPage> {
 }
 
 class MyTyper extends StatefulWidget {
-  const MyTyper({super.key,});
+  const MyTyper({super.key,
+    required this.erase,
+  });
+
+  final bool erase;
 
   @override
   State<MyTyper> createState() => _MyTyperState();
@@ -66,6 +70,19 @@ class _MyTyperState extends State<MyTyper> {
   int baseLevelXp = 30;
   late Timer timer;
   int currWorkingId = 1000;
+
+  eraseCheck(int id){
+    if(widget.erase){
+      if(kbdData[id][kbdCols['qty']] - 1 <= 0){
+        kbdData[id][kbdCols['qty']] = 0;
+        timer.cancel();
+      } else {
+        kbdData[id][kbdCols['qty']] -= 1;
+      }
+    } else {
+      kbdData[id][kbdCols['qty']] += 1;
+    }
+  }
 
   runTimer(int id){
     if (timer.isActive && id == currWorkingId) {
@@ -79,10 +96,10 @@ class _MyTyperState extends State<MyTyper> {
           if(kbdData[id][kbdCols['xp']] + 1 >= ((kbdData[id][kbdCols['level']]/10)+1) * baseLevelXp){
             kbdData[id][kbdCols['level']] += 1;
             kbdData[id][kbdCols['xp']] = 0;
-            kbdData[id][kbdCols['qty']] += 1;
+            eraseCheck(id);
           } else {
             kbdData[id][kbdCols['xp']] += 1;
-            kbdData[id][kbdCols['qty']] += 1;
+            eraseCheck(id);
           }
           setState(() {
             kbdData[id];
@@ -93,6 +110,12 @@ class _MyTyperState extends State<MyTyper> {
     }
 
   } // runTimer()
+
+  @override
+  void dispose() {
+    super.dispose();
+    timer.cancel();
+  }
 
   @override
   void initState() {
