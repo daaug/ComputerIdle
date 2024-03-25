@@ -1,3 +1,4 @@
+import 'package:computer_idle/keyboard.dart';
 import 'package:flutter/material.dart';
 
 
@@ -29,8 +30,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      title: 'Flutter Demo',
-      home: const MyHomePage(),
+      title: 'Computer Idle - The Game',
+      home: KeyboardPage(),
     );
   }
 }
