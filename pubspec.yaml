@@ -88,3 +88,10 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  fonts:
+    - family: CourierPrime
+      fonts:
+        - asset: ./assets/fonts/CourierPrime-Bold.ttf
+        - asset: ./assets/fonts/CourierPrime-BoldItalic.ttf
+        - asset: ./assets/fonts/CourierPrime-Italic.ttf
+        - asset: ./assets/fonts/CourierPrime-Regular.ttf

@@ -27,6 +27,7 @@ class _KeyboardPageState extends State<KeyboardPage> {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Keyboard Jobs'),
+          centerTitle: true,
           bottom: const TabBar(
             tabs: [
               Tab(text: 'Typer',),

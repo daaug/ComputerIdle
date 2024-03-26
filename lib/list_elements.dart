@@ -36,7 +36,7 @@ class _MyElementState extends State<MyElement> {
     return  Container(
         alignment: Alignment.center,
         constraints: BoxConstraints(
-          maxWidth: MediaQuery.of(context).size.width * 0.4,
+          maxWidth: MediaQuery.of(context).size.width * 0.25,
         ),
         decoration: BoxDecoration(
           border: Border.all(
@@ -47,51 +47,47 @@ class _MyElementState extends State<MyElement> {
         ),
         child:InkWell(
           onTap: () => widget.runTimer(widget.id),
-          child: Flex(
-            direction: Axis.horizontal,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Expanded( // Skill Name
-                flex: 3,
-                child: Text(widget.name,
+          child: Padding(padding: EdgeInsets.only(left: 5, right: 5),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text(widget.name,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     fontSize: 30,
                   ),
                 ),
-              ),
-              Expanded(
-                flex: 7,
-                child: Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text('qty:'),
-                        widget.cost != 0 ? const Text('cost:') : const Text(''),
-                        const Text('level:'),
-                        const Text('xp:'),
-                        const Text('time:'),
-                      ],
-                    ),
-                    Padding(padding: const EdgeInsets.only(right: 10),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Text('${widget.qty}'),
-                          widget.cost != 0 ? Text('${widget.cost}') : const Text(''),
-                          Text('${widget.level}'),
-                          Text('${widget.xp}/${(((kbdData[widget.id][kbdCols['level']]/10)+1) * 30).toInt()}'),
-                          Text('${widget.fullTime}ms'),
-                        ],   
-                      )
-                    ),
+                    const Text('qty:'),
+                    Text('${widget.qty}'),
                   ],
                 ),
-              )
-            ],
-          ), // END Row
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text('level:'),
+                    Text('${widget.level}'),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text('xp:'),
+                    Text('${widget.xp}'),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text('time:'),
+                    Text('${widget.fullTime}'),
+                  ],
+                ),
+              ],
+            ), // END Column
+          )
         ), // END InkWell
     ); // END Container
   }
