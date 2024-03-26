@@ -62,14 +62,31 @@ class _MyElementState extends State<MyElement> {
               ),
               Expanded(
                 flex: 7,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('qty: ${widget.qty}'),
-                    widget.cost != 0 ? Text('cost: ${widget.cost}') : const Text(''),
-                    Text('level: ${widget.level}'),
-                    Text('xp: ${widget.xp}/${(((kbdData[widget.id][kbdCols['level']]/10)+1) * 30).toInt()}'),
-                    Text('time: ${widget.fullTime}ms'),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text('qty:'),
+                        widget.cost != 0 ? const Text('cost:') : const Text(''),
+                        const Text('level:'),
+                        const Text('xp:'),
+                        const Text('time:'),
+                      ],
+                    ),
+                    Padding(padding: const EdgeInsets.only(right: 10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text('${widget.qty}'),
+                          widget.cost != 0 ? Text('${widget.cost}') : const Text(''),
+                          Text('${widget.level}'),
+                          Text('${widget.xp}/${(((kbdData[widget.id][kbdCols['level']]/10)+1) * 30).toInt()}'),
+                          Text('${widget.fullTime}ms'),
+                        ],   
+                      )
+                    ),
                   ],
                 ),
               )
