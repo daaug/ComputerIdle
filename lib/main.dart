@@ -1,23 +1,7 @@
+import 'package:computer_idle/data.dart';
 import 'package:computer_idle/keyboard.dart';
 import 'package:flutter/material.dart';
 
-
-//// BASE STATEFULL BUILDER
-//class MyHomePage extends StatefulWidget {
-//  const MyHomePage({super.key,});
-//
-//  @override
-//  State<MyHomePage> createState() => _MyHomePageState();
-//}
-//
-//class _MyHomePageState extends State<MyHomePage> {
-//
-//  @override
-//  Widget build(BuildContext context) {
-//    return Scaffold(
-//    );
-//  }
-//}
 
 void main() {
   runApp(const MyApp());
@@ -31,7 +15,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Computer Idle - The Game',
-      theme: ThemeData(fontFamily: 'CourierPrime'),
+      theme: ThemeData(
+        fontFamily: 'CourierPrime',
+      ),
       home: const KeyboardPage(),
     );
   }
