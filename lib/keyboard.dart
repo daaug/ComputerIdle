@@ -17,11 +17,12 @@ class KeyboardPage extends StatelessWidget {
           backgroundColor: globalBackground,
           foregroundColor: globalFontColor,
           centerTitle: true,
-          bottom: const TabBar(
+          bottom: TabBar(
             labelColor: Colors.yellow,
             indicatorColor: Colors.yellow,
             unselectedLabelColor: Colors.grey,
-            tabs: [
+            dividerColor: globalAccentColor,
+            tabs: const [
               Tab(text: 'Typer',),
               Tab(text: 'Eraser',),
             ]
@@ -32,7 +33,9 @@ class KeyboardPage extends StatelessWidget {
             width: MediaQuery.of(context).size.width * 0.9,
             child: const TabBarView(
               children: [
-                MyTyperEraser(typer: true,),
+                Padding(padding: EdgeInsets.only(top: 20),
+                  child: MyTyperEraser(typer: true,),
+                ),
                 MyTyperEraser(typer: false,),
               ],
             )

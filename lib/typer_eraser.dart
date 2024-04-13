@@ -20,6 +20,7 @@ class _MyTyperEraserState extends State<MyTyperEraser> {
   int baseLevelXp = 30;
   late Timer timer;
   int currWorkingId = 1000;
+  double cellHeight = 30;
 
   runTimer(int id){
     if (timer.isActive && id == currWorkingId) {
@@ -48,8 +49,11 @@ class _MyTyperEraserState extends State<MyTyperEraser> {
   } // runTimer()
 
   myText(String text){
-    return Text(text,
-      style: TextStyle(color: globalFontColor),
+    return SizedBox(
+      height: cellHeight,
+      child: Text(text,
+        style: TextStyle(color: globalFontColor),
+      )
     );
   }
 
@@ -63,67 +67,49 @@ class _MyTyperEraserState extends State<MyTyperEraser> {
   void initState() {
     super.initState();
 
-    timer = Timer(const Duration(milliseconds: 1), () {});
+    timer = Timer(const Duration(milliseconds: 1000), () {});
 
   } // initState()
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        Table(
-          children: [
-            TableRow(
-              children: [
-                TableCell(
-                  child: myText("name"),
-                ),
-                TableCell(
-                  child: myText("qty"),
-                ),
-                TableCell(
-                  child: myText("level"),
-                ),
-                TableCell(
-                  child: myText("xp"),
-                ),
-                TableCell(
-                  child: myText("t/ms"),
-                ),
-                TableCell(
-                  child: myText("on"),
-                ),
-              ]
-            ),
-            for(var i = 0; i < typerData.length; i++)
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Table(
+            children: [
               TableRow(
                 children: [
-                  TableCell(
-                    child: myText(typerData[i][typerCols['name']])
-                  ),
-                  TableCell(
-                    child: myText("${typerData[i][typerCols['qty']]}")
-                  ),
-                  TableCell(
-                    child: myText("${typerData[i][typerCols['level']]}")
-                  ),
-                  TableCell(
-                    child: myText("${typerData[i][typerCols['xp']]}")
-                  ),
-                  TableCell(
-                    child: myText("${typerData[i][typerCols['time']]}")
-                  ),
-                  TableCell(
-                    child: Text("${typerData[i][typerCols['active']]}",
-                      style: TextStyle(color: typerData[i][typerCols['active']] ? const Color(0xFFffff00) : const Color(0xFFff0000)),
-                    )
-                  ),
+                  myText('name'),
+                  myText('qty'),
+                  myText('level'),
+                  myText('xp'),
+                  myText('time'),
+                  myText('run'),
                 ]
-              )
-          ],
+              ),
+              for(var i = 0; i < typerData.length; i++)
+                TableRow(
+                  children: [
+                    myText(typerData[i][typerCols['name']]),
+                    myText("${typerData[i][typerCols['qty']]}"),
+                    myText("${typerData[i][typerCols['level']]}"),
+                    myText("${typerData[i][typerCols['xp']]}"),
+                    myText("${typerData[i][typerCols['time']]}"),
+                    SizedBox(
+                      height: cellHeight,
+                      child: Text("${typerData[i][typerCols['active']]}",
+                        style: TextStyle(color: typerData[i][typerCols['active']] ? const Color(0xFFffff00) : const Color(0xFFff0000)),
+                      )
+                    ),
+                  ]
+                )
+            ],
     )
-      ],
+        ],
+      ),
     );
   }
 }
 
+            
