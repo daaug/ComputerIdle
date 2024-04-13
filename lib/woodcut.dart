@@ -64,7 +64,7 @@ class _WoodcutListState extends State<WoodcutList> {
   int baseLevelXp = 30;
   late Timer timer;
   int currWorkingId = 1000;
-  double cellHeight = 30;
+  double cellHeight = 45;
 
   runTimer(int id){
     if (timer.isActive && id == currWorkingId) {
@@ -92,19 +92,20 @@ class _WoodcutListState extends State<WoodcutList> {
 
   } // runTimer()
 
-  myText(String text){
-    return SizedBox(
-      height: cellHeight,
-      child: Text(text,
-        style: TextStyle(color: globalFontColor),
+  Expanded itemList(String title, int pos, String col){
+    return Expanded(
+      child: RichText(
+        textAlign: TextAlign.center,
+        text: TextSpan(text: title,
+          style: TextStyle(color: globalFontAltColor),
+          children: [
+            TextSpan(text: "\n${dataWoodcut[pos][colsWoodcut[col]]}",
+              style: TextStyle(color: globalAccentColor)
+            ),
+          ]
+        ),
       )
     );
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    timer.cancel();
   }
 
   @override
@@ -116,40 +117,64 @@ class _WoodcutListState extends State<WoodcutList> {
   } // initState()
 
   @override
+  void dispose() {
+    super.dispose();
+    timer.cancel();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
         children: [
-          Table(
-            children: [
-              TableRow(
-                children: [
-                  myText('name'),
-                  myText('qty'),
-                  myText('level'),
-                  myText('xp'),
-                  myText('time'),
-                  myText('run'),
-                ]
-              ),
-              for(var i = 0; i < dataWoodcut.length; i++)
-                TableRow(
-                  children: [
-                    myText(dataWoodcut[i][colsWoodcut['name']]),
-                    myText("${dataWoodcut[i][colsWoodcut['qty']]}"),
-                    myText("${dataWoodcut[i][colsWoodcut['level']]}"),
-                    myText("${dataWoodcut[i][colsWoodcut['xp']]}"),
-                    myText("${dataWoodcut[i][colsWoodcut['time']]}"),
-                    SizedBox(
-                      height: cellHeight,
-                      child: Text("${dataWoodcut[i][colsWoodcut['active']]}",
-                        style: TextStyle(color: dataWoodcut[i][colsWoodcut['active']] ? const Color(0xFFffff00) : const Color(0xFFff0000)),
-                      )
-                    ),
-                  ]
-                )
-            ],
-    )
+          for(var i = 0; i < dataWoodcut.length; i++)
+            Column(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: globalAccentColor),
+                  ),
+                  child: Column(
+                    children: [
+                      Flex(
+                        direction: Axis.horizontal,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            flex: 1,
+                            child: Text(dataWoodcut[i][colsWoodcut['name']], style: TextStyle(color: globalFontAltColor), textAlign: TextAlign.center,),
+                          ),
+                          Expanded(
+                            flex: 1,
+                            child: Text(dataWoodcut[i][colsWoodcut['active']] ? "working" : "stoped", 
+                              textAlign: TextAlign.center,
+                              style: TextStyle(color: dataWoodcut[i][colsWoodcut['active']] ? const Color(0xFFffff00) : const Color(0xFFff0000)),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Divider(
+                        color: globalAccentColor,
+                        height: 2,
+                      ),
+                      Flex(
+                        direction: Axis.horizontal,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          itemList("qty", i, "qty"),
+                          itemList("lvl", i, "level"),
+                          itemList("xp", i, "xp"),
+                          itemList("t/ms", i, "time"),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 15) // Basic divisor
+              ],
+            )
+          
         ],
       ),
     );

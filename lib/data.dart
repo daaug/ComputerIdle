@@ -3,6 +3,7 @@ import 'dart:ui';
 // Globals
 Color globalBackground = const Color(0xFF101010);
 Color globalFontColor = const Color(0xFF00ff00);
+Color globalFontAltColor = const Color(0xFFffff00);
 Color globalAccentColor = const Color(0xFF00ff00);
 
 Map currWorking = {
