@@ -1,5 +1,5 @@
-import 'package:computer_idle/data.dart';
-import 'package:computer_idle/keyboard.dart';
+import 'package:medievidle/data.dart';
+import 'package:medievidle/keyboard.dart';
 import 'package:flutter/material.dart';
 
 
@@ -14,11 +14,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Computer Idle - The Game',
+      title: 'Medievidle',
       theme: ThemeData(
         fontFamily: 'CourierPrime',
       ),
-      home: const KeyboardPage(),
+      home: const WoodcutPage(),
     );
   }
 }
