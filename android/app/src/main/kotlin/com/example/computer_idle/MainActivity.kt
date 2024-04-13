@@ -1,4 +1,4 @@
-package com.example.computer_idle
+package com.example.medievidle
 
 import io.flutter.embedding.android.FlutterActivity
 

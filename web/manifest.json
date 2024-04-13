@@ -1,6 +1,6 @@
 {
-    "name": "computer_idle",
-    "short_name": "computer_idle",
+    "name": "medievidle",
+    "short_name": "medievidle",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

@@ -1,3 +1,3 @@
-# computer_idle
+# medievidle
 
 Just an Idle game about computers.
