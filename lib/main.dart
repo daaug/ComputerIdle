@@ -45,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
   getScreenWidth(BuildContext ctx){return MediaQuery.of(ctx).size.width;}
   getScreenHeight(BuildContext ctx){return MediaQuery.of(ctx).size.height;}
 
-  OutlinedButton myOutlinedButton(String title, Widget target){
+  OutlinedButton myOutlinedButton(String title, Widget target, Color color){
     return OutlinedButton(
       onPressed: () => Navigator.push(
         context,
@@ -55,12 +55,12 @@ class _MyHomePageState extends State<MyHomePage> {
         shape: MaterialStateProperty.all(RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(0),
         )),
-        minimumSize: MaterialStatePropertyAll(Size(getScreenWidth(context)*0.35, MediaQuery.of(context).size.height*0.10)),
+        minimumSize: MaterialStatePropertyAll(Size(getScreenWidth(context)*0.40, getScreenHeight(context)*0.10)),
         side: MaterialStateProperty.all(BorderSide(
-          color: globalAccentColor,
+          color: color,
           width: 2.0,
         )),
-        foregroundColor: MaterialStateProperty.all(globalFontColor)
+        foregroundColor: MaterialStateProperty.all(color)
       ),
       child: Text(title)
     );
@@ -95,10 +95,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 spacing: 20,
                 runSpacing: 20,
                 children: [
-                  myOutlinedButton("woodcut", const WoodcutPage()),
-                  myOutlinedButton("woodcut", const WoodcutPage()),
-                  myOutlinedButton("woodcut", const WoodcutPage()),
-                  myOutlinedButton("woodcut", const WoodcutPage()),
+                  myOutlinedButton("woodcut", const WoodcutPage(), const Color(0xFF00ff00)),
+                  myOutlinedButton("mine", const WoodcutPage(), const Color(0xFF808080)),
+                  myOutlinedButton("smith", const WoodcutPage(), const Color(0xFFffffff)),
+                  myOutlinedButton("fish", const WoodcutPage(), const Color(0xFF00ffff)),
                 ],
               ),
               SizedBox(height: sizedBoxH),
