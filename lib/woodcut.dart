@@ -22,8 +22,8 @@ class WoodcutPage extends StatelessWidget {
             child: Divider(height: 2, color: globalAccentColor,)
           ),
         ),
-        body: Center(
-          child: ItemsList(colsMap: colsWoodcut, dataList: dataWoodcut,),
+        body: Padding( padding: const EdgeInsets.only(top: 25),
+          child: ItemsList(colsMap: colsWoodcut, dataList: dataWoodcut),
         )
       )
     );

@@ -43,3 +43,27 @@ List dataWoodcut = [
   ["Sycamore",21348,0,0,0,false,false],
 ];
 
+Map colsMine = colsWoodcut;
+
+List dataMine = [
+  ["Salt",1700,0,0,0,true,false],
+  ["Glass",1955,0,0,0,false,false],
+  ["Crystal",2248,0,0,0,false,false],
+  ["Sugar",2585,0,0,0,false,false],
+  ["Stone",2973,0,0,0,false,false],
+  ["Coal",3419,0,0,0,false,false],
+  ["Tin",3932,0,0,0,false,false],
+  ["Iron",4522,0,0,0,false,false],
+  ["Gold",5200,0,0,0,false,false],
+  ["Steel",5980,0,0,0,false,false],
+  ["Obsidian",6877,0,0,0,false,false],
+  ["Diamond",7909,0,0,0,false,false],
+  ["Topaz",9095,0,0,0,false,false],
+  ["Quartz",10460,0,0,0,false,false],
+  ["Feldspar",12029,0,0,0,false,false],
+  ["Apatite",13833,0,0,0,false,false],
+  ["Fluorite",15908,0,0,0,false,false],
+  ["Calcite",18294,0,0,0,false,false],
+  ["Gypsum",21038,0,0,0,false,false],
+  ["Talc",24194,0,0,0,false,false],
+];

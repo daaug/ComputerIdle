@@ -86,56 +86,57 @@ class _ItemsListState extends State<ItemsList> {
       child: Column(
         children: [
           for(var i = 0; i < widget.dataList.length; i++)
-            Column(
-              children: [
-                InkWell(
-                  onTap: () => print(i),
-                  splashColor: globalAccentColor.withOpacity(0.2),
-                  child: Container(
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: globalAccentColor),
-                    ),
-                    child: Column(
-                      children: [
-                        Flex(
-                          direction: Axis.horizontal,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                              flex: 1,
-                              child: Text(widget.dataList[i][widget.colsMap['name']], style: TextStyle(color: globalFontAltColor), textAlign: TextAlign.center,),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Text(widget.dataList[i][widget.colsMap['active']] ? "working" : "stoped", 
-                                textAlign: TextAlign.center,
-                                style: TextStyle(color: widget.dataList[i][widget.colsMap['active']] ? const Color(0xFFffff00) : const Color(0xFFff0000)),
+            if(widget.dataList[i][widget.colsMap['unlocked']])
+              Column(
+                children: [
+                  InkWell(
+                    onTap: () => print(i),
+                    splashColor: globalAccentColor.withOpacity(0.2),
+                    child: Container(
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: globalAccentColor),
+                      ),
+                      child: Column(
+                        children: [
+                          Flex(
+                            direction: Axis.horizontal,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                flex: 1,
+                                child: Text(widget.dataList[i][widget.colsMap['name']], style: TextStyle(color: globalFontAltColor), textAlign: TextAlign.center,),
                               ),
-                            ),
-                          ],
-                        ),
-                        Divider(
-                          color: globalAccentColor,
-                          height: 2,
-                        ),
-                        Flex(
-                          direction: Axis.horizontal,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            itemText("qty", i, "qty"),
-                            itemText("lvl", i, "level"),
-                            itemText("xp", i, "xp"),
-                            itemText("t/ms", i, "time"),
-                          ],
-                        ),
-                      ],
+                              Expanded(
+                                flex: 1,
+                                child: Text(widget.dataList[i][widget.colsMap['active']] ? "working" : "stoped", 
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(color: widget.dataList[i][widget.colsMap['active']] ? const Color(0xFFffff00) : const Color(0xFFff0000)),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Divider(
+                            color: globalAccentColor,
+                            height: 2,
+                          ),
+                          Flex(
+                            direction: Axis.horizontal,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              itemText("qty", i, "qty"),
+                              itemText("lvl", i, "level"),
+                              itemText("xp", i, "xp"),
+                              itemText("t/ms", i, "time"),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                const SizedBox(height: 15) // Basic divider
-              ],
-            )
+                  const SizedBox(height: 15) // Basic divider
+                ],
+              )
         ],
       ),
     );
