@@ -16,11 +16,17 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Medievidle',
       theme: ThemeData(
+        appBarTheme: AppBarTheme(
+          backgroundColor: globalBackground,
+          foregroundColor: globalFontColor,
+          centerTitle: true,
+        ),
         brightness: Brightness.dark,
         primaryColor: globalFontColor,
         fontFamily: "CourierPrime",
-        textTheme: const TextTheme(
-          titleLarge: TextStyle(fontSize: 36.0,), // AppBar
+        scaffoldBackgroundColor: globalBackground,
+        textTheme: TextTheme(
+          titleLarge: TextStyle(fontSize: 30.0, color: globalFontColor, backgroundColor: globalBackground), // AppBar
           bodyMedium: TextStyle(fontSize: 21.0,), // Text
           labelLarge: TextStyle(fontSize: 24), // Button
         ),
@@ -71,15 +77,9 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Home', style: TextStyle(color: globalFontColor),),
-        centerTitle: true,
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(10),
-          child: Column(
-            children: [
-              Divider(height: 1, color: globalAccentColor,),
-              SizedBox(height: sizedBoxH,)
-            ],
-          ),
+          child: Divider(height: 1, color: globalAccentColor,),
         )
       ),
       body: SizedBox.expand(
@@ -87,6 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              SizedBox(height: sizedBoxH),
               const Text("V Skills V"),
               SizedBox(height: sizedBoxH),
               Wrap(

@@ -8,24 +8,15 @@ class WoodcutPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2, 
-      child: Scaffold(
-        backgroundColor: globalBackground,
-        appBar: AppBar(
-          title: const Text('Woodcut Jobs'),
-          backgroundColor: globalBackground,
-          foregroundColor: globalFontColor,
-          centerTitle: true,
-          bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(2),
-            child: Divider(height: 2, color: globalAccentColor,)
-          ),
-        ),
-        body: Padding( padding: const EdgeInsets.only(top: 25),
-          child: ItemsList(colsMap: colsWoodcut, dataList: dataWoodcut),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Woodcut Jobs'),
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(10),
+          child: Divider(height: 1, color: globalAccentColor,),
         )
-      )
+      ),
+      body: ItemsList(colsMap: colsWoodcut, dataList: dataWoodcut),
     );
   }
 }
