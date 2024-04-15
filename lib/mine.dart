@@ -3,21 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:medievidle/items_list.dart';
 
 
-class WoodcutPage extends StatelessWidget {
-  const WoodcutPage({super.key,});
+class MinePage extends StatelessWidget {
+  const MinePage({super.key,});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Woodcut Jobs'),
+        title: const Text('Mine Jobs'),
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(10),
           child: Divider(height: 1, color: globalAccentColor,),
         )
       ),
-      body: ItemsList(colsMap: colsWoodcut, dataList: dataWoodcut, accentColor: globalColors["woodcut"]),
+      body: ItemsList(colsMap: colsMine, dataList: dataMine, accentColor: globalColors["mine"]),
     );
   }
 }
-

@@ -8,10 +8,12 @@ class ItemsList extends StatefulWidget {
   const ItemsList({super.key,
     required this.colsMap,
     required this.dataList,
+    required this.accentColor,
   });
 
   final Map colsMap;
   final List dataList;
+  final Color accentColor;
 
   @override
   State<ItemsList> createState() => _ItemsListState();
@@ -50,15 +52,15 @@ class _ItemsListState extends State<ItemsList> {
 
   } // runTimer()
 
-  Expanded itemText(String title, int pos, String col){
+  Expanded itemText(String title, int pos, String column){
     return Expanded(
       child: RichText(
         textAlign: TextAlign.center,
         text: TextSpan(text: title,
           style: TextStyle(color: globalFontAltColor),
           children: [
-            TextSpan(text: "\n${widget.dataList[pos][widget.colsMap[col]]}",
-              style: TextStyle(color: globalAccentColor)
+            TextSpan(text: "\n${widget.dataList[pos][widget.colsMap[column]]}",
+              style: TextStyle(color: widget.accentColor)
             ),
           ]
         ),
@@ -91,11 +93,11 @@ class _ItemsListState extends State<ItemsList> {
                 children: [
                   InkWell(
                     onTap: () => print(i),
-                    splashColor: globalAccentColor.withOpacity(0.2),
+                    splashColor: widget.accentColor.withOpacity(0.2),
                     child: Container(
                       padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
-                        border: Border.all(color: globalAccentColor),
+                        border: Border.all(color: widget.accentColor),
                       ),
                       child: Column(
                         children: [
@@ -117,7 +119,7 @@ class _ItemsListState extends State<ItemsList> {
                             ],
                           ),
                           Divider(
-                            color: globalAccentColor,
+                            color: widget.accentColor,
                             height: 2,
                           ),
                           Flex(
