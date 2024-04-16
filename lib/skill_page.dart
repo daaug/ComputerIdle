@@ -18,7 +18,7 @@ class SkillPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('$name Jobs'),
+        title: Text('$name Jobs', style: TextStyle(color: globalColors[name]),),
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(10),
           child: Divider(height: 1, color: globalColors[name],),
