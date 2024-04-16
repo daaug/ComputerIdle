@@ -1,5 +1,12 @@
 import 'dart:ui';
 
+import 'package:get/get.dart';
+import 'package:medievidle/models.dart';
+
+// Objects
+final objWoodcut = ObjSkill(name: "woodcut", dataList: dataWoodcut, colsMap: colsWoodcut).obs;
+final objMine = ObjSkill(name: "mine", dataList: dataMine, colsMap: colsMine).obs;
+
 // Globals
 Color globalBackground = const Color(0xFF101010);
 Color globalFontColor = const Color(0xFF00ff00);
@@ -29,7 +36,7 @@ Map colsWoodcut = {
   'active': 6,
 };
 
-List dataWoodcut = [
+final RxList<dynamic> dataWoodcut = RxList<dynamic>([
   ["Arborvitae",1500,0,0,0,true,false],
   ["Ash",1725,0,0,0,false,false],
   ["Basswood",1984,0,0,0,false,false],
@@ -50,7 +57,7 @@ List dataWoodcut = [
   ["Giant Sequoia",16142,0,0,0,false,false],
   ["Slippery Elm",18563,0,0,0,false,false],
   ["Sycamore",21348,0,0,0,false,false],
-];
+]);
 
 Map colsMine = colsWoodcut;
 

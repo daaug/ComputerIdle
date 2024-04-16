@@ -75,10 +75,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 spacing: 20,
                 runSpacing: 20,
                 children: [
-                  myOutlinedButton("woodcut", SkillPage(name: "woodcut", colsMap: colsWoodcut, dataList: dataWoodcut), globalColors["woodcut"]),
-                  myOutlinedButton("mine", SkillPage(name: "mine", colsMap: colsMine, dataList: dataMine), globalColors["mine"]),
-                  myOutlinedButton("smith", SkillPage(name: "smith", colsMap: colsWoodcut, dataList: dataWoodcut), globalColors["smith"]),
-                  myOutlinedButton("fish", SkillPage(name: "fish", colsMap: colsWoodcut, dataList: dataWoodcut), globalColors["fish"]),
+                  myOutlinedButton("woodcut", SkillPage(objSkill: objWoodcut), globalColors["woodcut"]),
+                  myOutlinedButton("mine", SkillPage(objSkill: objMine), globalColors["mine"]),
+                  //myOutlinedButton("smith", SkillPage(name: "smith", colsMap: colsWoodcut, dataList: dataWoodcut), globalColors["smith"]),
+                  //myOutlinedButton("fish", SkillPage(name: "fish", colsMap: colsWoodcut, dataList: dataWoodcut), globalColors["fish"]),
                 ],
               ),
               SizedBox(height: sizedBoxH),
@@ -91,20 +91,20 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Column(
                   children: [
                     currWorking["woodcut"]["id"] != "" ?
-                      ItemsList(colsMap: colsWoodcut, dataList: dataWoodcut, accentColor: globalColors["woodcut"])
+                      ItemsList(objSkill: objWoodcut)
                       : Text("not woodcuting", style: TextStyle(color: globalColors["woodcut"])),
 
-                    currWorking["mine"]["id"] != "" ?
-                      ItemsList(colsMap: colsMine, dataList: dataMine, accentColor: globalColors["mine"])
-                      : Text("not mining", style: TextStyle(color: globalColors["mine"])),
+                    //currWorking["mine"]["id"] != "" ?
+                    //  ItemsList(colsMap: colsMine, dataList: dataMine, accentColor: globalColors["mine"])
+                    //  : Text("not mining", style: TextStyle(color: globalColors["mine"])),
 
-                    currWorking["smith"]["id"] != "" ?
-                      ItemsList(colsMap: colsMine, dataList: dataMine, accentColor: globalColors["mine"])
-                      : Text("not smithing", style: TextStyle(color: globalColors["smith"])),
+                    //currWorking["smith"]["id"] != "" ?
+                    //  ItemsList(colsMap: colsMine, dataList: dataMine, accentColor: globalColors["mine"])
+                    //  : Text("not smithing", style: TextStyle(color: globalColors["smith"])),
 
-                    currWorking["fish"]["id"] != "" ?
-                      ItemsList(colsMap: colsMine, dataList: dataMine, accentColor: globalColors["mine"])
-                      : Text("not fishing", style: TextStyle(color: globalColors["fish"])),
+                    //currWorking["fish"]["id"] != "" ?
+                    //  ItemsList(colsMap: colsMine, dataList: dataMine, accentColor: globalColors["mine"])
+                    //  : Text("not fishing", style: TextStyle(color: globalColors["fish"])),
                   ],
                 )
               )
