@@ -86,25 +86,29 @@ class _MyHomePageState extends State<MyHomePage> {
               SizedBox(height: sizedBoxH),
               const Text("V current working V"),
               SizedBox(height: sizedBoxH),
-              Column(
-                children: [
-                  currWorking["woodcut"]["id"] != "" ?
-                    ItemsList(colsMap: colsWoodcut, dataList: dataWoodcut, accentColor: globalColors["woodcut"])
-                    : Text("not woodcuting", style: TextStyle(color: globalColors["woodcut"])),
+              Padding(
+                padding: const EdgeInsets.only(left: 10, right: 10),
+                child: Column(
+                  children: [
+                    currWorking["woodcut"]["id"] != "" ?
+                      ItemsList(colsMap: colsWoodcut, dataList: dataWoodcut, accentColor: globalColors["woodcut"])
+                      : Text("not woodcuting", style: TextStyle(color: globalColors["woodcut"])),
 
-                  currWorking["mine"]["id"] != "" ?
-                    ItemsList(colsMap: colsMine, dataList: dataMine, accentColor: globalColors["mine"])
-                    : Text("not mining", style: TextStyle(color: globalColors["mine"])),
+                    currWorking["mine"]["id"] != "" ?
+                      ItemsList(colsMap: colsMine, dataList: dataMine, accentColor: globalColors["mine"])
+                      : Text("not mining", style: TextStyle(color: globalColors["mine"])),
 
-                  currWorking["smith"]["id"] != "" ?
-                    ItemsList(colsMap: colsMine, dataList: dataMine, accentColor: globalColors["mine"])
-                    : Text("not smithing", style: TextStyle(color: globalColors["smith"])),
+                    currWorking["smith"]["id"] != "" ?
+                      ItemsList(colsMap: colsMine, dataList: dataMine, accentColor: globalColors["mine"])
+                      : Text("not smithing", style: TextStyle(color: globalColors["smith"])),
 
-                  currWorking["fish"]["id"] != "" ?
-                    ItemsList(colsMap: colsMine, dataList: dataMine, accentColor: globalColors["mine"])
-                    : Text("not fishing", style: TextStyle(color: globalColors["fish"])),
-                ],
-              ),
+                    currWorking["fish"]["id"] != "" ?
+                      ItemsList(colsMap: colsMine, dataList: dataMine, accentColor: globalColors["mine"])
+                      : Text("not fishing", style: TextStyle(color: globalColors["fish"])),
+                  ],
+                )
+              )
+              ,
             ],
           ),
         )

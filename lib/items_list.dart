@@ -87,6 +87,7 @@ class _ItemsListState extends State<ItemsList> {
     return SingleChildScrollView(
       child: Column(
         children: [
+          const SizedBox(height: 15),
           for(var i = 0; i < widget.dataList.length; i++)
             if(widget.dataList[i][widget.colsMap['unlocked']])
               Column(

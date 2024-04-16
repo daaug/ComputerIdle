@@ -24,7 +24,10 @@ class SkillPage extends StatelessWidget {
           child: Divider(height: 1, color: globalColors[name],),
         )
       ),
-      body: ItemsList(colsMap: colsMine, dataList: dataMine, accentColor: globalColors[name]),
+      body: Padding(
+        padding: const EdgeInsets.only(left: 10, right: 10),
+        child: ItemsList(colsMap: colsMine, dataList: dataMine, accentColor: globalColors[name]),
+      )
     );
   }
 }
