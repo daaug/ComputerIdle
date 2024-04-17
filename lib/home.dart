@@ -40,16 +40,10 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  @override
-  void initState() {
-    super.initState();
-
-  }
-
-  @override
-  void dispose() {
-
-    super.dispose();
+  myCurrWorkElement(String name, String gerund, Map cols, List data){
+    return currWorking[name]["id"] != "" ?
+      ItemsList(colsMap: cols, dataList: data, accentColor: globalColors[name])
+      : Text("not $gerund", style: TextStyle(color: globalColors[name]));
   }
 
   @override
@@ -82,21 +76,16 @@ class _MyHomePageState extends State<MyHomePage> {
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: Column(
               children: [
-                currWorking["woodcut"]["id"] != "" ?
-                  ItemsList(colsMap: colsWoodcut, dataList: dataWoodcut, accentColor: globalColors["woodcut"])
-                  : Text("not woodcuting", style: TextStyle(color: globalColors["woodcut"])),
+                myCurrWorkElement("woodcut", "woodcuting", colsWoodcut, dataWoodcut),
+                myCurrWorkElement("mine", "mining", colsMine, dataMine),
 
-                currWorking["mine"]["id"] != "" ?
-                  ItemsList(colsMap: colsMine, dataList: dataMine, accentColor: globalColors["mine"])
-                  : Text("not mining", style: TextStyle(color: globalColors["mine"])),
+                //currWorking["smith"]["id"] != "" ?
+                //  ItemsList(colsMap: colsMine, dataList: dataMine, accentColor: globalColors["mine"])
+                //  : Text("not smithing", style: TextStyle(color: globalColors["smith"])),
 
-                currWorking["smith"]["id"] != "" ?
-                  ItemsList(colsMap: colsMine, dataList: dataMine, accentColor: globalColors["mine"])
-                  : Text("not smithing", style: TextStyle(color: globalColors["smith"])),
-
-                currWorking["fish"]["id"] != "" ?
-                  ItemsList(colsMap: colsMine, dataList: dataMine, accentColor: globalColors["mine"])
-                  : Text("not fishing", style: TextStyle(color: globalColors["fish"])),
+                //currWorking["fish"]["id"] != "" ?
+                //  ItemsList(colsMap: colsMine, dataList: dataMine, accentColor: globalColors["mine"])
+                //  : Text("not fishing", style: TextStyle(color: globalColors["fish"])),
               ],
             )
           )

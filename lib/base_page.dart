@@ -30,8 +30,12 @@ class _MyBasePageState extends State<MyBasePage> {
         'name': 'home',
       },
       'woodcut': {
-        'widget': SkillPage(name: "woodcut", dataList: dataWoodcut, colsMap: colsMine),
+        'widget': SkillPage(name: "woodcut", dataList: dataWoodcut, colsMap: colsWoodcut),
         'name': 'woodcut',
+      },
+      'mine': {
+        'widget': SkillPage(name: "mine", dataList: dataMine, colsMap: colsMine),
+        'name': 'mine',
       },
     };
 
