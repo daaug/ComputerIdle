@@ -1,8 +1,6 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
+import 'package:medievidle/base_page.dart';
 import 'package:medievidle/data.dart';
-import 'package:medievidle/home.dart';
 
 
 void main() {
@@ -33,7 +31,7 @@ class MyApp extends StatelessWidget {
           labelLarge: TextStyle(fontSize: 24), // Button
         ),
       ),
-      home: const MyHomePage(),
+      home: const MyBasePage(),
     );
   }
 }

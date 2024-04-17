@@ -16,18 +16,9 @@ class SkillPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('$name Jobs', style: TextStyle(color: globalColors[name]),),
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(10),
-          child: Divider(height: 1, color: globalColors[name],),
-        )
-      ),
-      body: Padding(
+    return Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
-        child: ItemsList(colsMap: colsMine, dataList: dataMine, accentColor: globalColors[name]),
-      )
-    );
+        child: ItemsList(colsMap: colsMap, dataList: dataList, accentColor: globalColors[name]),
+      );
   }
 }
