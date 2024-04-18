@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medievidle/data.dart';
 import 'package:medievidle/items_list.dart';
-import 'package:medievidle/skill_page.dart';
 
 
 class MyHomePage extends StatefulWidget {
@@ -41,8 +40,14 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   myCurrWorkElement(String name, String gerund, Map cols, List data){
-    return currWorking[name]["id"] != "" ?
-      ItemsList(colsMap: cols, dataList: data, accentColor: globalColors[name])
+    return currWorking[name]["pos"] != 1000 ?
+      MyItem(
+        colsMap: cols,
+        dataList: data,
+        name: name,
+        pos: currWorking[name]["pos"],
+        currWorkingPos: currWorking[name]['id'],
+      )
       : Text("not $gerund", style: TextStyle(color: globalColors[name]));
   }
 
@@ -63,8 +68,6 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               myOutlinedButton("woodcut", globalColors["woodcut"]),
               myOutlinedButton("mine", globalColors["mine"]),
-              myOutlinedButton("smith", globalColors["smith"]),
-              myOutlinedButton("fish", globalColors["fish"]),
             ],
           ),
           SizedBox(height: sizedBoxH),
@@ -78,14 +81,6 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 myCurrWorkElement("woodcut", "woodcuting", colsWoodcut, dataWoodcut),
                 myCurrWorkElement("mine", "mining", colsMine, dataMine),
-
-                //currWorking["smith"]["id"] != "" ?
-                //  ItemsList(colsMap: colsMine, dataList: dataMine, accentColor: globalColors["mine"])
-                //  : Text("not smithing", style: TextStyle(color: globalColors["smith"])),
-
-                //currWorking["fish"]["id"] != "" ?
-                //  ItemsList(colsMap: colsMine, dataList: dataMine, accentColor: globalColors["mine"])
-                //  : Text("not fishing", style: TextStyle(color: globalColors["fish"])),
               ],
             )
           )

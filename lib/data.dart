@@ -1,24 +1,56 @@
-import 'dart:ui';
+import 'dart:async';
+import 'package:flutter/material.dart';
 
+
+// =================================================
+// Model
+// =================================================
+class DataModel with ChangeNotifier {
+  Map currWorking = {};
+  Map colsWoodcut = {};
+  Map colsMine = {};
+  List dataWoodcut = [];
+  List dataMine = [];
+
+  DataModel(
+    this.currWorking,
+    this.colsWoodcut,
+    this.colsMine,
+    this.dataWoodcut,
+    this.dataMine,
+  );
+}
+
+// =================================================
 // Globals
+// =================================================
 Color globalBackground = const Color(0xFF101010);
 Color globalFontColor = const Color(0xFF00ff00);
 Color globalFontAltColor = const Color(0xFFffff00);
 Color globalAccentColor = const Color(0xFF00ff00);
 Map globalColors = {
+  "home": const Color(0xFF00ff00),
   "woodcut": const Color(0xFF00ff00),
   "mine": const Color(0xFF808080),
   "smith": const Color(0xFFffffff),
   "fish": const Color(0xFF00ffff),
 };
+int baseLevelXp = 30;
+
+// =================================================
+// Timers
+// =================================================
+late Timer timerWoodcut;
+late Timer timerMine;
 
 Map currWorking = {
-  "woodcut": {"id": "", "timestamp": ""},
-  "mine": {"id": "", "timestamp": ""},
-  "smith": {"id": "", "timestamp": ""},
-  "fish": {"id": "", "timestamp": ""},
+  "woodcut": {"pos": 1000, "timestamp": "", "timer": timerWoodcut},
+  "mine": {"pos": 1000, "timestamp": "", "timer": timerMine},
 };
 
+// =================================================
+// Woodcut
+// =================================================
 Map colsWoodcut = {
   'name': 0,
   'time': 1,
@@ -28,7 +60,6 @@ Map colsWoodcut = {
   'unlocked': 5,
   'active': 6,
 };
-
 List dataWoodcut = [
   ["Arborvitae",1500,0,0,0,true,false],
   ["Ash",1725,0,0,0,false,false],
@@ -52,8 +83,18 @@ List dataWoodcut = [
   ["Sycamore",21348,0,0,0,false,false],
 ];
 
-Map colsMine = colsWoodcut;
-
+// =================================================
+// Mine
+// =================================================
+Map colsMine = {
+  'name': 0,
+  'time': 1,
+  'level': 2,
+  'xp': 3,
+  'qty': 4,
+  'unlocked': 5,
+  'active': 6,
+};
 List dataMine = [
   ["Salt",1700,0,0,0,true,false],
   ["Glass",1955,0,0,0,false,false],

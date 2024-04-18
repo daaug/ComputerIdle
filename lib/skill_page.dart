@@ -1,4 +1,3 @@
-import 'package:medievidle/data.dart';
 import 'package:flutter/material.dart';
 import 'package:medievidle/items_list.dart';
 
@@ -18,7 +17,11 @@ class SkillPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
-        child: ItemsList(colsMap: colsMap, dataList: dataList, accentColor: globalColors[name]),
+        child: ItemsList(
+          colsMap: colsMap,
+          dataList: dataList,
+          name: name,
+        ),
       );
   }
 }
