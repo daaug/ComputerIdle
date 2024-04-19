@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medievidle/data.dart';
+import 'package:medievidle/models.dart';
 
 
 class ItemsList extends StatefulWidget {
@@ -82,6 +83,23 @@ class _MyItemState extends State<MyItem> {
       )
     );
   }
+
+  @override
+  void dispose() {
+    dataElements.removeListener((){});
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    dataElements.addListener(() {
+      if (mounted){
+        setState(() { });
+      }
+    });
+    super.initState();
+  }
+
 
   @override
   Widget build(BuildContext context) {

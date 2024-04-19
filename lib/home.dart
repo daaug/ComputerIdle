@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:medievidle/data.dart';
 import 'package:medievidle/items_list.dart';
+import 'package:medievidle/models.dart';
 
 
 class MyHomePage extends StatefulWidget {
@@ -15,7 +16,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
+  
   double sizedBoxH = 20;
 
   getScreenWidth(BuildContext ctx){return MediaQuery.of(ctx).size.width;}
@@ -58,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(height: sizedBoxH),
-          const Text("V Skills V"),
+          const Text("V skills V"),
           SizedBox(height: sizedBoxH),
           Wrap(
             direction: Axis.horizontal,
@@ -79,8 +80,8 @@ class _MyHomePageState extends State<MyHomePage> {
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: Column(
               children: [
-                myCurrWorkElement("woodcut", "woodcuting", colsWoodcut, dataWoodcut),
-                myCurrWorkElement("mine", "mining", colsMine, dataMine),
+                myCurrWorkElement("woodcut", "woodcuting", colsWoodcut, dataElements.dataWoodcut),
+                myCurrWorkElement("mine", "mining", colsMine, dataElements.dataMine),
               ],
             )
           )

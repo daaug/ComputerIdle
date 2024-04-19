@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:medievidle/data.dart';
 import 'package:medievidle/home.dart';
+import 'package:medievidle/models.dart';
 import 'package:medievidle/skill_page.dart';
 
 
@@ -77,6 +78,11 @@ class _MyBasePageState extends State<MyBasePage> {
 
   @override
   void initState() {
+    
+    dataElements.addListener(() {
+      setState(() { });
+    });
+
     timerWoodcut = Timer(const Duration(milliseconds: 0), () { });
     timerMine = Timer(const Duration(milliseconds: 0), () { });
 
@@ -86,18 +92,19 @@ class _MyBasePageState extends State<MyBasePage> {
         'name': 'home',
       },
       'woodcut': {
-        'widget': SkillPage(name: "woodcut", dataList: dataWoodcut, colsMap: colsWoodcut,),
+        'widget': SkillPage(name: "woodcut", dataList: dataElements.dataWoodcut, colsMap: colsWoodcut,),
         'name': 'woodcut',
       },
       'mine': {
-        'widget': SkillPage(name: "mine", dataList: dataMine, colsMap: colsMine,),
+        'widget': SkillPage(name: "mine", dataList: dataElements.dataMine, colsMap: colsMine,),
         'name': 'mine',
       },
     };
 
+
     Timer.periodic(const Duration(milliseconds: 1000), (timer) {
       setState(() {
-        dataWoodcut[0][4]++;
+        dataElements.updateElement(dataElements.dataWoodcut, 0, 4);
       });
     });
 
@@ -124,7 +131,7 @@ class _MyBasePageState extends State<MyBasePage> {
       body: SizedBox.expand(
         child: Column(
           children: [
-            Text("${dataWoodcut[0][colsWoodcut['qty']]}"),
+            //Text("${dataElements.dataWoodcut[0][colsWoodcut['qty']]}"),
             myPages[currPageName]['widget']
           ],
         ),
