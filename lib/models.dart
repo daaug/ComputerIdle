@@ -81,8 +81,7 @@ class DataElements extends ChangeNotifier {
     list[line][cols['qty']]++;
 
     // Check if curr xp is bigger than the curr xp cap
-    if (list[line][cols['xp']] + 1 >=
-        ((list[line][cols['level']] / 10) + 1) * baseLevelXp) {
+    if (list[line][cols['xp']] + 1 >= ((list[line][cols['level']] / 10) + 1) * baseLevelXp) {
       list[line][cols['xp']] = 0;
       list[line][cols['level']]++;
       // Enable the next element in list, but, If current line is the

@@ -71,14 +71,17 @@ class MyItem extends StatefulWidget {
 class _MyItemState extends State<MyItem> {
 
   Expanded itemText(String title, int line, String column){
+
+    String fullString = "\n${widget.dataList[line][widget.colsMap[column]]}";
+
     return Expanded(
       child: RichText(
         textAlign: TextAlign.center,
         text: TextSpan(text: title,
           style: TextStyle(color: globalFontAltColor),
           children: [
-            TextSpan(text: "\n${widget.dataList[line][widget.colsMap[column]]}",
-              style: TextStyle(color: globalColors[widget.name])
+            TextSpan(text: fullString,
+              style: TextStyle(color: globalColors[widget.name]),
             ),
           ]
         ),
