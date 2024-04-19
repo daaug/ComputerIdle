@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:medievidle/data.dart';
 import 'package:medievidle/models.dart';
 
-
+// =================================================
+// List to render individuals
+// =================================================
 class ItemsList extends StatefulWidget {
   const ItemsList({super.key,
     required this.name,
@@ -37,8 +39,7 @@ class _ItemsListState extends State<ItemsList> {
                 name: widget.name,
                 colsMap: widget.colsMap,
                 dataList: widget.dataList,
-                pos: i,
-                currWorkingPos: currWorking[widget.name]['pos'],
+                line: i,
               )
         ],
       ),
@@ -52,42 +53,37 @@ class MyItem extends StatefulWidget {
     required this.name,
     required this.colsMap,
     required this.dataList,
-    required this.pos,
-    required this.currWorkingPos,
+    required this.line,
   });
 
   final String name;
   final Map colsMap;
   final List dataList;
-  final int pos;
-  final int currWorkingPos;
+  final int line;
 
   @override
   State<MyItem> createState() => _MyItemState();
 }
 
+// =================================================
+// Individual element
+// =================================================
 class _MyItemState extends State<MyItem> {
 
-  Expanded itemText(String title, int pos, String column){
+  Expanded itemText(String title, int line, String column){
     return Expanded(
       child: RichText(
         textAlign: TextAlign.center,
         text: TextSpan(text: title,
           style: TextStyle(color: globalFontAltColor),
           children: [
-            TextSpan(text: "\n${widget.dataList[pos][widget.colsMap[column]]}",
+            TextSpan(text: "\n${widget.dataList[line][widget.colsMap[column]]}",
               style: TextStyle(color: globalColors[widget.name])
             ),
           ]
         ),
       )
     );
-  }
-
-  @override
-  void dispose() {
-    dataElements.removeListener((){});
-    super.dispose();
   }
 
   @override
@@ -100,6 +96,11 @@ class _MyItemState extends State<MyItem> {
     super.initState();
   }
 
+  @override
+  void dispose() {
+    dataElements.removeListener((){});
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -107,6 +108,12 @@ class _MyItemState extends State<MyItem> {
       children: [
         InkWell(
           onTap: () {
+            dataElements.startSkillTimer(
+              widget.dataList,
+              widget.colsMap,
+              widget.line,
+              widget.name
+            );
           },
           splashColor: globalColors[widget.name].withOpacity(0.2),
           child: Container(
@@ -122,13 +129,13 @@ class _MyItemState extends State<MyItem> {
                   children: [
                     Expanded(
                       flex: 1,
-                      child: Text(widget.dataList[widget.pos][widget.colsMap['name']], style: TextStyle(color: globalFontAltColor), textAlign: TextAlign.center,),
+                      child: Text(widget.dataList[widget.line][widget.colsMap['name']], style: TextStyle(color: globalFontAltColor), textAlign: TextAlign.center,),
                     ),
                     Expanded(
                       flex: 1,
-                      child: Text(widget.dataList[widget.pos][widget.colsMap['active']] ? "working" : "stoped", 
+                      child: Text(widget.dataList[widget.line][widget.colsMap['active']] ? "working" : "stoped", 
                         textAlign: TextAlign.center,
-                        style: TextStyle(color: widget.dataList[widget.pos][widget.colsMap['active']] ? const Color(0xFFffff00) : const Color(0xFFff0000)),
+                        style: TextStyle(color: widget.dataList[widget.line][widget.colsMap['active']] ? const Color(0xFFffff00) : const Color(0xFFff0000)),
                       ),
                     ),
                   ],
@@ -141,10 +148,10 @@ class _MyItemState extends State<MyItem> {
                   direction: Axis.horizontal,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    itemText("qty", widget.pos, "qty"),
-                    itemText("lvl", widget.pos, "level"),
-                    itemText("xp", widget.pos, "xp"),
-                    itemText("t/ms", widget.pos, "time"),
+                    itemText("qty", widget.line, "qty"),
+                    itemText("lvl", widget.line, "level"),
+                    itemText("xp", widget.line, "xp"),
+                    itemText("t/ms", widget.line, "time"),
                   ],
                 ),
               ],

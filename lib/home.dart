@@ -41,13 +41,12 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   myCurrWorkElement(String name, String gerund, Map cols, List data){
-    return currWorking[name]["pos"] != 1000 ?
+    return dataElements.currWorking[name]["line"] != 1000 ?
       MyItem(
         colsMap: cols,
         dataList: data,
         name: name,
-        pos: currWorking[name]["pos"],
-        currWorkingPos: currWorking[name]['id'],
+        line: dataElements.currWorking[name]["line"],
       )
       : Text("not $gerund", style: TextStyle(color: globalColors[name]));
   }

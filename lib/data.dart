@@ -16,16 +16,4 @@ Map globalColors = {
   "smith": const Color(0xFFffffff),
   "fish": const Color(0xFF00ffff),
 };
-int baseLevelXp = 30;
-
-// =================================================
-// Timers
-// =================================================
-late Timer timerWoodcut;
-late Timer timerMine;
-
-Map currWorking = {
-  "woodcut": {"pos": 1000, "timestamp": "", "timer": timerWoodcut},
-  "mine": {"pos": 1000, "timestamp": "", "timer": timerMine},
-};
 
